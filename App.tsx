@@ -1,14 +1,26 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Constants from 'expo-constants';
 
 //importando componente PizzaItem criado
 import { PizzaItem } from './components/PizzaItem';
 
 const App = () =>{
+
+   //Ação a ser executada ao clicar no botão - É uma função
+   const handleButton = () =>{
+
+      Alert.alert('Fui clicado!');
+   }
+
    return (
    <SafeAreaView style={{ margin: Constants.statusBarHeight }}>
 
       <Text style={styles.titulo}>Olá Mundo!</Text>
+
+
+      <Button title="Clique aqui!" onPress={handleButton} />
+
+
       <Text style={styles.subtitulo}>Lista de Pizzas:</Text>
       
       <PizzaItem 
