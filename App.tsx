@@ -1,4 +1,4 @@
-import { Alert, Button, Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, Pressable, SafeAreaView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import Constants from 'expo-constants';
 
 //importando componente PizzaItem criado
@@ -62,17 +62,23 @@ const App = () =>{
          />
       </Pressable>
 
-      <PizzaItem 
-         name="Portuguesa" 
-         price={50} 
-         items={['Cebola', 'Queijo', 'Calabresa', 'Pimentão']}
-      />
+      <TouchableHighlight onPress={handleTerminouApertar} underlayColor="#FF0000">
+         <PizzaItem 
+               name="Portuguesa" 
+               price={50} 
+               items={['Cebola', 'Queijo', 'Calabresa', 'Pimentão']}
+         />      
+      </TouchableHighlight>
+   
+      <TouchableOpacity onPress={handleTerminouApertar} activeOpacity={0.5}>
+         <PizzaItem 
+            name="Frango com Pequi" 
+            price={150} 
+            items={['Farinha', 'Queijo', 'Frango', 'Pequi']}
+         />
+      </TouchableOpacity>
 
-      <PizzaItem 
-         name="Frango com Pequi" 
-         price={150} 
-         items={['Farinha', 'Queijo', 'Frango', 'Pequi']}
-      />
+      
 
    </SafeAreaView>
    );
