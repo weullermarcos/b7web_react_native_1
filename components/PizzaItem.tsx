@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 //Criando um tipo props
 type Props = {
@@ -7,10 +7,11 @@ type Props = {
     price: number;
     originalPrice?: number; //indica que o parâmetro é opcional
     items: string[]; //recebendo um array de strings para os itens
+    onPress: () => void; //recebendo uma função como uma prop
 }
 
 //Criando e exportando o componente
-export const PizzaItem = ({name, price, originalPrice, items}: Props) => {
+export const PizzaItem = ({name, price, originalPrice, items, onPress}: Props) => {
 
     //criando variáveis
     let nome = 'Pizza XXXXXXX';
@@ -23,24 +24,26 @@ export const PizzaItem = ({name, price, originalPrice, items}: Props) => {
     }
 
     return (
-        <View style={styles.container}>
-            
-            <Text style={styles.nome}>{name}</Text>
-            <Text style={[styles.preco, styles.negrito]}>R$ {price.toFixed(2)}</Text>
+        <Pressable onPress={onPress}>
+            <View style={styles.container}>
+                
+                <Text style={styles.nome}>{name}</Text>
+                <Text style={[styles.preco, styles.negrito]}>R$ {price.toFixed(2)}</Text>
 
-            {originalPrice && originalPrice > preco && 
-                <View>
-                    <Text style={[styles.negrito]}>PROMOÇÃAAAOOO!</Text>
+                {originalPrice && originalPrice > preco && 
+                    <View>
+                        <Text style={[styles.negrito]}>PROMOÇÃAAAOOO!</Text>
 
-                    <Text>Chamando uma função: {soma(10,5)}</Text>
-            
-                    <Text>{`Usando template String: R$ ${preco.toFixed(2)}`}</Text>
-                </View>
-            }
+                        <Text>Chamando uma função: {soma(10,5)}</Text>
+                
+                        <Text>{`Usando template String: R$ ${preco.toFixed(2)}`}</Text>
+                    </View>
+                }
 
-            <Text>Ingredientes: {items.join(', ')}</Text>
+                <Text>Ingredientes: {items.join(', ')}</Text>
 
-        </View>
+            </View>
+        </Pressable>
     );
 }
 

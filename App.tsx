@@ -53,32 +53,27 @@ const App = () =>{
 
       <Text style={styles.subtitulo}>Lista de Pizzas:</Text>
       
-      <Pressable onPress={handleButton}>
-         <PizzaItem 
-            name="Calabresa" 
-            price={20} 
-            originalPrice={100}
-            items={['Farinha', 'Cebola', 'Queijo', 'Calabresa', 'Corante']}
-         />
-      </Pressable>
+      <PizzaItem 
+         name="Calabresa" 
+         price={20} 
+         originalPrice={100}
+         items={['Farinha', 'Cebola', 'Queijo', 'Calabresa', 'Corante']}
+         onPress={() => Alert.alert('Calabresa')} 
+      />
 
-      <TouchableHighlight onPress={handleTerminouApertar} underlayColor="#FF0000">
-         <PizzaItem 
-               name="Portuguesa" 
-               price={50} 
-               items={['Cebola', 'Queijo', 'Calabresa', 'Pimentão']}
-         />      
-      </TouchableHighlight>
-   
-      <TouchableOpacity onPress={handleTerminouApertar} activeOpacity={0.5}>
-         <PizzaItem 
-            name="Frango com Pequi" 
-            price={150} 
-            items={['Farinha', 'Queijo', 'Frango', 'Pequi']}
-         />
-      </TouchableOpacity>
+      <PizzaItem 
+         name="Portuguesa" 
+         price={50} 
+         items={['Cebola', 'Queijo', 'Calabresa', 'Pimentão']}
+         onPress={() => Alert.alert('Portuguesa')}
+      />   
 
-      
+      <PizzaItem 
+         name="Frango com Pequi" 
+         price={150} 
+         items={['Farinha', 'Queijo', 'Frango', 'Pequi']}
+         onPress={() => Alert.alert('Frango com Pequi')}
+      />
 
    </SafeAreaView>
    );
