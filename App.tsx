@@ -3,8 +3,22 @@ import Constants from 'expo-constants';
 
 //importando componente PizzaItem criado
 import { PizzaItem } from './components/PizzaItem';
+import { useState } from "react";
 
 const App = () =>{
+
+   //Criando uma State
+   const [nome, setNome] = useState('Ninguém');
+
+   //Ação do botão para trocar o nome para Weuller
+   const handleBotao1 = () => {
+      setNome('Weuller');
+   }
+
+   //Ação do botão para trocar o nome para João
+   const handleBotao2 = () => {
+      setNome('João');
+   }
 
    //Ação a ser executada ao clicar no botão - É uma função
    const handleButton = () =>{
@@ -34,6 +48,10 @@ const App = () =>{
    <SafeAreaView style={{ margin: Constants.statusBarHeight }}>
 
       <Text style={styles.titulo}>Olá Mundo!</Text>
+
+      <Text style={styles.subtitulo}>Meu nome é: {nome}</Text>
+      <Button title="Mudar para Weuller" onPress={handleBotao1}/>
+      <Button title="Mudar para João" onPress={handleBotao2}/>
 
 
       <Button title="Clique aqui!" onPress={handleButton} />
@@ -91,6 +109,8 @@ const styles = StyleSheet.create({
       fontSize: 18,
       color: '#0000FF',
       textAlign: 'center',
+      marginTop: 20,
+      marginBottom: 20,
    },
 
    button:{
