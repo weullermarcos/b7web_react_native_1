@@ -1,10 +1,19 @@
 import { StyleSheet, Text, View } from "react-native";
 
+//Criando um tipo props
+type Props = {
+
+    name: string;
+    price: number;
+    originalPrice?: number; //indica que o parâmetro é opcional
+    items: string[]; //recebendo um array de strings para os itens
+}
+
 //Criando e exportando o componente
-export const PizzaItem = () => {
+export const PizzaItem = ({name, price, originalPrice, items}: Props) => {
 
     //criando variáveis
-    let nome = 'Pizza Calabresa';
+    let nome = 'Pizza XXXXXXX';
     let preco = 40; 
 
     //Criando uma função
@@ -15,10 +24,22 @@ export const PizzaItem = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.nome}>{nome}</Text>
-            <Text style={[styles.preco, styles.negrito]}>R$ {preco.toFixed(2)}</Text>
-            <Text>Chamando uma função: {soma(10,5)}</Text>
-            <Text>{`Usando template String: R$ ${preco.toFixed(2)}`}</Text>
+            
+            <Text style={styles.nome}>{name}</Text>
+            <Text style={[styles.preco, styles.negrito]}>R$ {price.toFixed(2)}</Text>
+
+            {originalPrice && originalPrice > preco && 
+                <View>
+                    <Text style={[styles.negrito]}>PROMOÇÃAAAOOO!</Text>
+
+                    <Text>Chamando uma função: {soma(10,5)}</Text>
+            
+                    <Text>{`Usando template String: R$ ${preco.toFixed(2)}`}</Text>
+                </View>
+            }
+
+            <Text>Ingredientes: {items.join(', ')}</Text>
+
         </View>
     );
 }
@@ -33,11 +54,11 @@ const styles = StyleSheet.create({
     nome: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: '#0AFF00',
+        color: '#0000FF',
     },
     preco: {
         fontSize: 12,
-        color: '#FF00FF',
+        color: '#FF000F',
     },
     negrito: {
         fontWeight: 'bold',

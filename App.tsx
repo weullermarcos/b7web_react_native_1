@@ -11,9 +11,23 @@ const App = () =>{
       <Text style={styles.titulo}>Olá Mundo!</Text>
       <Text style={styles.subtitulo}>Lista de Pizzas:</Text>
       
-      <PizzaItem/>
-      <PizzaItem/>
-      <PizzaItem/>
+      <PizzaItem 
+         name="Calabresa" 
+         price={20} 
+         originalPrice={100}
+         items={['Farinha', 'Cebola', 'Queijo', 'Calabresa', 'Corante']}
+      />
+      <PizzaItem 
+         name="Portuguesa" 
+         price={50} 
+         items={['Cebola', 'Queijo', 'Calabresa', 'Pimentão']}
+      />
+      <PizzaItem 
+         name="Frango com Pequi" 
+         price={150} 
+         items={['Farinha', 'Queijo', 'Frango', 'Pequi']}
+      />
+
    </SafeAreaView>
    );
 }
