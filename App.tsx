@@ -1,4 +1,4 @@
-import { Alert, Button, Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { Alert, Button, Image, ImageBackground, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import Constants from 'expo-constants';
 
 //importando componente PizzaItem criado
@@ -193,7 +193,6 @@ const App = () =>{
             source={{uri: 'https://www.google.com.br/google.jpg'}} 
             style={{width: 300, height: 100}}
          />
-
       </View>
 
       {/* Bloco - Usando Imagem Interna*/}
@@ -204,7 +203,13 @@ const App = () =>{
             source={require('./assets/logo.png')} 
             style={{width: 250, height: 250}}
          />
+      </View>
 
+      {/* Bloco - Usando Imagem Como Background*/}
+      <View style={styles.box}>
+         <ImageBackground source={require('./assets/logo.png')} style={{width: 250, height: 250}}>
+            <Text style={{color: '#FFFFFF'}}>Texto de exemplo...</Text>
+         </ImageBackground>
       </View>
 
 
