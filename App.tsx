@@ -7,17 +7,29 @@ import { useState } from "react";
 
 const App = () =>{
 
-   //Criando uma State
+   //Criando States de nome e sobrenome
    const [nome, setNome] = useState('Ninguém');
+   const [sobrenome, setSobrenome] = useState('Santos');
+
+   //Criando state para ocultar ou exibir os botões de troca de nome
+   const [showOptions, setShowOptions] = useState(true);
+
 
    //Ação do botão para trocar o nome para Weuller
    const handleBotao1 = () => {
       setNome('Weuller');
+      setSobrenome('Marcos');
    }
 
    //Ação do botão para trocar o nome para João
    const handleBotao2 = () => {
       setNome('João');
+      setSobrenome('Paulo');
+   }
+
+   //Ação para exibir / Ocultar botões de troca de nome
+   const handleOptionsButton = () => {
+      setShowOptions(! showOptions);
    }
 
    //Ação a ser executada ao clicar no botão - É uma função
@@ -49,12 +61,17 @@ const App = () =>{
 
       <Text style={styles.titulo}>Olá Mundo!</Text>
 
-      <Text style={styles.subtitulo}>Meu nome é: {nome}</Text>
-      <Button title="Mudar para Weuller" onPress={handleBotao1}/>
-      <Button title="Mudar para João" onPress={handleBotao2}/>
+      <Text style={styles.subtitulo}>Meu nome é: {nome} {sobrenome}</Text>
 
+      {showOptions &&
+         <View style={styles.box}>
+            <Button title="Mudar para Weuller" onPress={handleBotao1}/>
+            <Button title="Mudar para João" onPress={handleBotao2}/>
+         </View>
+      }
 
-      <Button title="Clique aqui!" onPress={handleButton} />
+      <Button title={showOptions ? 'Ocultar Opções!' : 'Mostrar Opções!'} onPress={handleOptionsButton} />
+
 
       <Pressable style={styles.button} onPressIn={handleComecouApertar} onPressOut={handleTerminouApertar}>
          <View>
@@ -123,6 +140,17 @@ const styles = StyleSheet.create({
       color: '#FFFFFF',
       textAlign: 'center',
    },
+
+   box:{
+
+      borderColor: '#000000',
+      borderStyle: 'dotted',
+      borderWidth: 2,
+      padding: 5,
+      margin: 5,
+
+   },
+
 });
 
 export default App;
