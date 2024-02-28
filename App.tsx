@@ -1,4 +1,4 @@
-import { Alert, Button, Pressable, SafeAreaView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { Alert, Button, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import Constants from 'expo-constants';
 
 //importando componente PizzaItem criado
@@ -39,7 +39,7 @@ const App = () =>{
       setIngredientes([...ingredientes, 'Leite']);
    }
 
-   
+
    //Função para trocar o nome da pessoa pelo nome recebido
    const trocaNome = (novNome: string) => {
 
@@ -98,7 +98,7 @@ const App = () =>{
    }
 
    return (
-   <SafeAreaView style={{ margin: Constants.statusBarHeight }}>
+   <ScrollView style={{ margin: Constants.statusBarHeight }}>
 
       <Text style={styles.titulo}>Olá Mundo!</Text>
 
@@ -130,7 +130,11 @@ const App = () =>{
       <Text>Nome: {pessoa.nome}</Text>
       <Text>Idade: {pessoa.idade} anos</Text>
 
+      <Button title="Trocar nome para Weuller" onPress={() => trocaNome('Weuller')}/>
+      <Button title="Trocar nome para Jão" onPress={() => trocaNome('Jão')}/>
+
       <Button title="Trocar idade para 90 anos" onPress={() => trocaIdade(90)}/>
+      <Button title="Trocar idade para 10 anos" onPress={() => trocaIdade(10)}/>
 
       <Text style={styles.subtitulo}>Ingredientes:</Text>
       <View>
@@ -152,7 +156,14 @@ const App = () =>{
          onPress={() => Alert.alert('Calabresa')} 
       /> 
 
-   </SafeAreaView>
+      <PizzaItem 
+         name="Frango com Pequi" 
+         price={150} 
+         items={['Farinha', 'Queijo', 'Frango', 'Pequi']}
+         onPress={() => Alert.alert('Frango com Pequi')}
+      />
+
+   </ScrollView>
    );
 }
 
