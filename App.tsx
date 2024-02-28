@@ -24,7 +24,22 @@ const App = () =>{
       peso: 96
    });
 
+   //Criando state com array
+   const [ingredientes, setIngredientes] = useState<string[]>([
+      'fatinha',
+      'ovo',
+      'corante'
+   ]);
 
+
+   //Ação para adicionar um novo ingrediente ao array de ingredientes
+   const handleNovoIngrediente = () => {
+
+      //os ... permite clonar um array inteiro e só adicionar o que for necessário
+      setIngredientes([...ingredientes, 'Leite']);
+   }
+
+   
    //Função para trocar o nome da pessoa pelo nome recebido
    const trocaNome = (novNome: string) => {
 
@@ -115,11 +130,17 @@ const App = () =>{
       <Text>Nome: {pessoa.nome}</Text>
       <Text>Idade: {pessoa.idade} anos</Text>
 
-      <Button title="Trocar nome Weuller" onPress={() => trocaNome('Weuller')}/>
-      <Button title="Trocar nome André" onPress={() => trocaNome('André')}/>
-
       <Button title="Trocar idade para 90 anos" onPress={() => trocaIdade(90)}/>
-      <Button title="Trocar idade para 10 anos" onPress={() => trocaIdade(10)}/>
+
+      <Text style={styles.subtitulo}>Ingredientes:</Text>
+      <View>
+         {ingredientes.map((item, index) => (
+            <Text key={index}>{item}</Text>
+         ))}
+      </View>
+
+      <Button title="Adicionar ingrediente" onPress={handleNovoIngrediente}/>
+
 
       <Text style={styles.subtitulo}>Lista de Pizzas:</Text>
       
