@@ -4,6 +4,7 @@ import Constants from 'expo-constants';
 //importando componente PizzaItem criado
 import { PizzaItem } from './components/PizzaItem';
 import { useState } from "react";
+import { Pessoa } from "./types/Pessoa";
 
 const App = () =>{
 
@@ -14,6 +15,31 @@ const App = () =>{
    //Criando state para ocultar ou exibir os botões de troca de nome
    const [showOptions, setShowOptions] = useState(true);
 
+
+   //Criando uma state para o objeto pessoa
+   const [pessoa, setPessoa] = useState<Pessoa>({
+      nome: 'Jorel',
+      idade: 25,
+      altura: 1.85,
+      peso: 96
+   });
+
+
+   //Função para trocar o nome da pessoa pelo nome recebido
+   const trocaNome = (novNome: string) => {
+
+      //os ... permite clonar um objeto inteiro e só modificar o que for necessário
+      //no exemplo abaixo clonamos o objeto pessoa e só trocamos o nome
+      setPessoa({...pessoa, nome: novNome});
+   }
+
+   //Troca a Idade da pessoa pela idade recebida
+   const trocaIdade = (novaIdade: number) => {
+
+      //os ... permite clonar um objeto inteiro e só modificar o que for necessário
+      //no exemplo abaixo clonamos o objeto pessoa e só trocamos a idade
+      setPessoa({...pessoa, idade: novaIdade});
+   }
 
    //Ação do botão para trocar o nome para Weuller
    const handleBotao1 = () => {
@@ -75,7 +101,7 @@ const App = () =>{
 
       <Pressable style={styles.button} onPressIn={handleComecouApertar} onPressOut={handleTerminouApertar}>
          <View>
-            <Text style={styles.buttonText}>Clique em mim!</Text>
+            <Text style={styles.buttonText}>Testando Onpress!</Text>
          </View>
       </Pressable>
 
@@ -85,6 +111,15 @@ const App = () =>{
          </View>
       </Pressable>
 
+      <Text style={styles.subtitulo}>Pessoa:</Text>
+      <Text>Nome: {pessoa.nome}</Text>
+      <Text>Idade: {pessoa.idade} anos</Text>
+
+      <Button title="Trocar nome Weuller" onPress={() => trocaNome('Weuller')}/>
+      <Button title="Trocar nome André" onPress={() => trocaNome('André')}/>
+
+      <Button title="Trocar idade para 90 anos" onPress={() => trocaIdade(90)}/>
+      <Button title="Trocar idade para 10 anos" onPress={() => trocaIdade(10)}/>
 
       <Text style={styles.subtitulo}>Lista de Pizzas:</Text>
       
@@ -94,21 +129,7 @@ const App = () =>{
          originalPrice={100}
          items={['Farinha', 'Cebola', 'Queijo', 'Calabresa', 'Corante']}
          onPress={() => Alert.alert('Calabresa')} 
-      />
-
-      <PizzaItem 
-         name="Portuguesa" 
-         price={50} 
-         items={['Cebola', 'Queijo', 'Calabresa', 'Pimentão']}
-         onPress={() => Alert.alert('Portuguesa')}
-      />   
-
-      <PizzaItem 
-         name="Frango com Pequi" 
-         price={150} 
-         items={['Farinha', 'Queijo', 'Frango', 'Pequi']}
-         onPress={() => Alert.alert('Frango com Pequi')}
-      />
+      /> 
 
    </SafeAreaView>
    );
@@ -117,13 +138,13 @@ const App = () =>{
 const styles = StyleSheet.create({
 
    titulo:{
-      fontSize: 24,
+      fontSize: 20,
       color: '#FF0000',
       textAlign: 'center',
    },
 
    subtitulo:{
-      fontSize: 18,
+      fontSize: 16,
       color: '#0000FF',
       textAlign: 'center',
       marginTop: 20,
