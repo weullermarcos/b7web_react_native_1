@@ -58,12 +58,16 @@ const App = () =>{
 
    //Ação do botão para trocar o nome para Weuller
    const handleBotao1 = () => {
+
+      //Usa states para fazer a troca do nome e sobrenome
       setNome('Weuller');
       setSobrenome('Marcos');
    }
 
    //Ação do botão para trocar o nome para João
    const handleBotao2 = () => {
+
+      //Usa states para fazer a troca do nome e sobrenome
       setNome('João');
       setSobrenome('Paulo');
    }
@@ -102,66 +106,86 @@ const App = () =>{
 
       <Text style={styles.titulo}>Olá Mundo!</Text>
 
-      <Text style={styles.subtitulo}>Meu nome é: {nome} {sobrenome}</Text>
+      {/* Bloco - Usando Pressable Botões e Sates*/}
+      <View style={styles.box}>
+         <Text style={styles.subtitulo}>Meu nome é: {nome} {sobrenome}</Text>
 
-      {showOptions &&
-         <View style={styles.box}>
-            <Button title="Mudar para Weuller" onPress={handleBotao1}/>
-            <Button title="Mudar para João" onPress={handleBotao2}/>
-         </View>
-      }
+         {showOptions &&
+            <View style={styles.box}>
+               <Button title="Mudar para Weuller" onPress={handleBotao1}/>
+               <Button title="Mudar para João" onPress={handleBotao2}/>
+            </View>
+         }
 
-      <Button title={showOptions ? 'Ocultar Opções!' : 'Mostrar Opções!'} onPress={handleOptionsButton} />
-
-
-      <Pressable style={styles.button} onPressIn={handleComecouApertar} onPressOut={handleTerminouApertar}>
-         <View>
-            <Text style={styles.buttonText}>Testando Onpress!</Text>
-         </View>
-      </Pressable>
-
-      <Pressable style={styles.button} onLongPress={handleApertoLongo} delayLongPress={1000}>
-         <View>
-            <Text style={styles.buttonText}>Long Press!</Text>
-         </View>
-      </Pressable>
-
-      <Text style={styles.subtitulo}>Pessoa:</Text>
-      <Text>Nome: {pessoa.nome}</Text>
-      <Text>Idade: {pessoa.idade} anos</Text>
-
-      <Button title="Trocar nome para Weuller" onPress={() => trocaNome('Weuller')}/>
-      <Button title="Trocar nome para Jão" onPress={() => trocaNome('Jão')}/>
-
-      <Button title="Trocar idade para 90 anos" onPress={() => trocaIdade(90)}/>
-      <Button title="Trocar idade para 10 anos" onPress={() => trocaIdade(10)}/>
-
-      <Text style={styles.subtitulo}>Ingredientes:</Text>
-      <View>
-         {ingredientes.map((item, index) => (
-            <Text key={index}>{item}</Text>
-         ))}
+         <Button title={showOptions ? 'Ocultar Opções!' : 'Mostrar Opções!'} onPress={handleOptionsButton} />
       </View>
 
-      <Button title="Adicionar ingrediente" onPress={handleNovoIngrediente}/>
+
+      {/* Bloco - Botões - Usando Pressable */}
+      <View style={styles.box}>
+         <Text style={styles.subtitulo}>Usando Pressable:</Text>
+         <Pressable style={styles.button} onPressIn={handleComecouApertar} onPressOut={handleTerminouApertar}>
+            <View>
+               <Text style={styles.buttonText}>Testando Onpress!</Text>
+            </View>
+         </Pressable>
+
+         <Pressable style={styles.button} onLongPress={handleApertoLongo} delayLongPress={1000}>
+            <View>
+               <Text style={styles.buttonText}>Long Press!</Text>
+            </View>
+         </Pressable>
+      </View>
 
 
-      <Text style={styles.subtitulo}>Lista de Pizzas:</Text>
+      {/* Bloco - Alterar Nome e Idade - States como Objeto */}
+      <View style={styles.box}>
+         <Text style={styles.subtitulo}>Pessoa - States com Objeto</Text>
+         <Text>Nome: {pessoa.nome}</Text>
+         <Text>Idade: {pessoa.idade} anos</Text>
+
+         <Button title="Trocar nome para Weuller" onPress={() => trocaNome('Weuller')}/>
+         <Button title="Trocar nome para Jão" onPress={() => trocaNome('Jão')}/>
+
+         <Button title="Trocar idade para 90 anos" onPress={() => trocaIdade(90)}/>
+         <Button title="Trocar idade para 10 anos" onPress={() => trocaIdade(10)}/>
+      </View>
+
+
+      {/* Bloco - Adicionar ingredientes - States com array */}
+      <View style={styles.box}>
+         <Text style={styles.subtitulo}>Ingredientes - States com Array</Text>
+         <View>
+            {ingredientes.map((item, index) => (
+               <Text key={index}>{item}</Text>
+            ))}
+         </View>
+
+         <Button title="Adicionar ingrediente" onPress={handleNovoIngrediente}/>
+      </View>
+
+
+      {/* Bloco - Lista de Pizzas - Usando Props*/}
+      <View style={styles.box}>
+         <Text style={styles.subtitulo}>Pizzas - Usando Props e Componentes</Text>
+         
+         <PizzaItem 
+            name="Calabresa" 
+            price={20} 
+            originalPrice={100}
+            items={['Farinha', 'Cebola', 'Queijo', 'Calabresa', 'Corante']}
+            onPress={() => Alert.alert('Calabresa')} 
+         /> 
+
+         <PizzaItem 
+            name="Frango com Pequi" 
+            price={150} 
+            items={['Farinha', 'Queijo', 'Frango', 'Pequi']}
+            onPress={() => Alert.alert('Frango com Pequi')}
+         />
+      </View>
+
       
-      <PizzaItem 
-         name="Calabresa" 
-         price={20} 
-         originalPrice={100}
-         items={['Farinha', 'Cebola', 'Queijo', 'Calabresa', 'Corante']}
-         onPress={() => Alert.alert('Calabresa')} 
-      /> 
-
-      <PizzaItem 
-         name="Frango com Pequi" 
-         price={150} 
-         items={['Farinha', 'Queijo', 'Frango', 'Pequi']}
-         onPress={() => Alert.alert('Frango com Pequi')}
-      />
 
    </ScrollView>
    );
@@ -199,8 +223,8 @@ const styles = StyleSheet.create({
       borderColor: '#000000',
       borderStyle: 'dotted',
       borderWidth: 2,
-      padding: 5,
-      margin: 5,
+      padding: 10,
+      margin: 10,
 
    },
 
