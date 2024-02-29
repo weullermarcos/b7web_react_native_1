@@ -1,13 +1,14 @@
 import { Alert, Button, Image, ImageBackground, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import Constants from 'expo-constants';
 
-//importando componente PizzaItem criado
+//importando componentes próprios
 import { PizzaItem } from './components/PizzaItem';
+import { SeuNome } from './components/SeuNome';
 
 //Importado para usarmos states
 import { useState } from "react";
 
-//Importando o tipo de dados Pesso
+//Importando o tipo de dados Pessoa
 import { Pessoa } from "./types/Pessoa";
 
 const App = () =>{
@@ -233,12 +234,17 @@ const App = () =>{
          <Text>Nome digitado: {nomInput}</Text>
       </View>
 
+
+      {/* Bloco - Usando um fragment*/}
       <>
-         <Text></Text>
-         <Text></Text>
-         <Text></Text>
-         <Text></Text>
       </>
+
+
+      {/* Bloco - Usando Componente próprio*/}
+      <View style={styles.box}>
+         <Text style={styles.subtitulo}>Usando Componente próprio</Text>
+         <SeuNome />
+      </View>
 
    </ScrollView>
    );
