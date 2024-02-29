@@ -1,12 +1,19 @@
-import { Alert, Button, Image, ImageBackground, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { Alert, Button, Image, ImageBackground, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import Constants from 'expo-constants';
 
 //importando componente PizzaItem criado
 import { PizzaItem } from './components/PizzaItem';
+
+//Importado para usarmos states
 import { useState } from "react";
+
+//Importando o tipo de dados Pesso
 import { Pessoa } from "./types/Pessoa";
 
 const App = () =>{
+
+   //Criando state para o campo de input
+   const [nomInput, setNomeInput] = useState('');
 
    //Criando States de nome e sobrenome
    const [nome, setNome] = useState('Ninguém');
@@ -197,7 +204,6 @@ const App = () =>{
 
       {/* Bloco - Usando Imagem Interna*/}
       <View style={styles.box}>
-
          <Text style={styles.subtitulo}>Usando Imagem Interna</Text>
          <Image 
             source={require('./assets/logo.png')} 
@@ -207,11 +213,32 @@ const App = () =>{
 
       {/* Bloco - Usando Imagem Como Background*/}
       <View style={styles.box}>
+         <Text style={styles.subtitulo}>Usando Imagem Externa</Text>
          <ImageBackground source={require('./assets/logo.png')} style={{width: 250, height: 250}}>
             <Text style={{color: '#FFFFFF'}}>Texto de exemplo...</Text>
          </ImageBackground>
       </View>
 
+
+      {/* Bloco - Usando Campo de input de texto*/}
+      <View style={styles.box}>
+         <Text style={styles.subtitulo}>Usando Campo de input de texto</Text>
+         <TextInput 
+            style={styles.input} 
+            placeholder="Digite seu nome..."
+            placeholderTextColor={'#000000'}
+            value={nomInput}
+            onChangeText={texto => setNomeInput(texto)}
+         />
+         <Text>Nome digitado: {nomInput}</Text>
+      </View>
+
+      <>
+         <Text></Text>
+         <Text></Text>
+         <Text></Text>
+         <Text></Text>
+      </>
 
    </ScrollView>
    );
@@ -245,13 +272,16 @@ const styles = StyleSheet.create({
    },
 
    box:{
-
       borderColor: '#000000',
       borderStyle: 'dotted',
       borderWidth: 2,
       padding: 10,
       margin: 10,
+   },
 
+   input:{
+      backgroundColor: '#CCCCCC',
+      padding: 10,
    },
 
 });
