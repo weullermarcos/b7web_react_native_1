@@ -1,9 +1,13 @@
-import { Alert, Button, Image, ImageBackground, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { Alert, Button, Image, ImageBackground, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import Constants from 'expo-constants';
+
+//Importando aquivo de estilos
+import { styles } from './styles';
 
 //importando componentes próprios
 import { PizzaItem } from './components/PizzaItem';
 import { SeuNome } from './components/SeuNome';
+import { MeuBotao } from "./components/MeuBotao";
 
 //Importado para usarmos states
 import { useState } from "react";
@@ -110,7 +114,7 @@ const App = () =>{
    }
 
    return (
-   <ScrollView style={{ margin: Constants.statusBarHeight }}>
+   <ScrollView style={{ margin: Constants.statusBarHeight, flex: 1, backgroundColor:'#DDDDDD'}}>
 
       <Text style={styles.titulo}>Olá Mundo!</Text>
 
@@ -246,50 +250,15 @@ const App = () =>{
          <SeuNome />
       </View>
 
+      {/* Bloco - Estilização*/}
+      <View style={styles.box}>
+         <Text style={styles.subtitulo}>Estilização</Text>
+         <View style={[styles.ball, styles.fundoAzul]}></View>
+         <MeuBotao textoBotao="Clica em Mim!!!"/>
+      </View>
+
    </ScrollView>
    );
 }
-
-const styles = StyleSheet.create({
-
-   titulo:{
-      fontSize: 20,
-      color: '#FF0000',
-      textAlign: 'center',
-   },
-
-   subtitulo:{
-      fontSize: 16,
-      color: '#0000FF',
-      textAlign: 'center',
-      marginTop: 20,
-      marginBottom: 20,
-   },
-
-   button:{
-      backgroundColor: '#FF0000',
-      padding: 10,
-      margin: 10,
-   },
-
-   buttonText:{
-      color: '#FFFFFF',
-      textAlign: 'center',
-   },
-
-   box:{
-      borderColor: '#000000',
-      borderStyle: 'dotted',
-      borderWidth: 2,
-      padding: 10,
-      margin: 10,
-   },
-
-   input:{
-      backgroundColor: '#CCCCCC',
-      padding: 10,
-   },
-
-});
 
 export default App;
