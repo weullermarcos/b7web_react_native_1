@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native";
+import {cores, fontes} from "./themes";
+
 
 //Criando arquivo de estilos
 export const styles = StyleSheet.create({
 
     titulo:{
-       fontSize: 20,
+       fontSize: fontes.imensa,
        color: '#FF0000',
        textAlign: 'center',
     },
